@@ -42,7 +42,7 @@ public class SwitchTo {
     public void switchToFrame() {
         driver.get("https://demoqa.com/frames");
         //driver.switchTo().frame(0);
-        driver.switchTo().frame("frame1");
+        //driver.switchTo().frame("frame1");
         System.out.println(driver.findElement(By.id("sampleHeading")).getText());
     }
 
@@ -51,7 +51,7 @@ public class SwitchTo {
         driver.get("https://www.hyrtutorials.com/p/frames-practice.html");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("name")).sendKeys("TestAutomation");
-        driver.switchTo().frame("frm1"); //try with webelement
+        //driver.switchTo().frame("frm1"); //try with webelement
         Select course = new Select(driver.findElement(By.id("course")));
         course.selectByVisibleText("Java");
         Thread.sleep(5000);
