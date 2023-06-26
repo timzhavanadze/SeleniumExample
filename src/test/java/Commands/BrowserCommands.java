@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import static java.lang.Thread.sleep;
+
 
 public class BrowserCommands {
     @Test
@@ -23,12 +25,12 @@ public class BrowserCommands {
         driver.quit();
     }
     @Test
-    public void close() {
+    public void close() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("http://uitestpractice.com");
         driver.manage().window().maximize();
-        driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/ul/li[4]/a")).click();
+        sleep(4000);
         driver.close();
     }
 }

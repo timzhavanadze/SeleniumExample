@@ -7,7 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static java.lang.Thread.sleep;
 
 public class ActionCommands {
     @Test
@@ -25,9 +28,10 @@ public class ActionCommands {
             WebElement elemSlider = driver.findElement(By.cssSelector(".ui-slider-handle"));
             action
                     .clickAndHold(elemSlider)
-                    .moveByOffset(40,0)
+                    .moveByOffset(100,0)
                     .release()
                     .perform();
+            sleep(5000);
             System.out.println("Drag & Drop test case successful");
         }
         catch (Exception e)
@@ -48,7 +52,7 @@ public class ActionCommands {
         actions
                 .contextClick(element)
                 .perform();
-        Thread.sleep(3000);
+        sleep(3000);
         driver.quit();
     }
     @Test
@@ -61,12 +65,12 @@ public class ActionCommands {
         WebElement SourceElement= driver.findElement(By.id("draggable"));
         WebElement TargetElement= driver.findElement(By.id("droppable"));
         Actions action = new Actions(driver);
-        Thread.sleep(3000);
+        sleep(3000);
         action
                 .dragAndDrop(SourceElement, TargetElement)
                 .build().perform();
 //        action.clickAndHold(SourceElement).moveToElement(TargetElement).release().perform();
-        Thread.sleep(3000);
+        sleep(3000);
         driver.quit();
     }
     @Test
@@ -79,9 +83,9 @@ public class ActionCommands {
         WebElement element= driver.findElement(By.id("target"));
         element.sendKeys("test");
         element.sendKeys(Keys.CONTROL,"A");
-        Thread.sleep(3000);
+        sleep(3000);
         element.sendKeys(Keys.DELETE);
-        Thread.sleep(3000);
+        sleep(3000);
         driver.quit();
     }
 
