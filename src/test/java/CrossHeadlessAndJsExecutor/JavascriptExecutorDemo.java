@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class JavascriptExecutorDemo {
 
@@ -60,19 +62,26 @@ public class JavascriptExecutorDemo {
     public void scroll() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor)driver;
         driver.manage().window().maximize();
-        driver.get("https://www.google.com");
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        WebElement search = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
-        search.sendKeys("test automation");
-        WebElement activeElement = driver.switchTo().activeElement();
-        activeElement.submit();
-        //Vertical scroll - down by 500  pixels
-        js.executeScript("window.scrollBy(0,500)");
+        driver.get("http://moneyboats.com/");
+        //Vertical scroll - down by 600  pixels
+        js.executeScript("window.scrollBy(0,600)");
         // for scrolling till the bottom of the page we can use the code like
         //js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         Thread.sleep(4000);
         js.executeScript("window.scrollBy(0,-500)");
         Thread.sleep(4000);
+    }
+
+    @Test
+    public void testTimeout() {
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        //Launching the Site.
+        driver.get("https://demo.guru99.com/V4/");
+
+        //Maximize window
+        driver.manage().window().maximize();
+        //Call executeAsyncScript() method to wait for 5 seconds
+        js.executeAsyncScript("window.setTimeout(arguments[0], 5000);");
     }
 
     @Test
@@ -93,18 +102,23 @@ public class JavascriptExecutorDemo {
         JavascriptExecutor js= (JavascriptExecutor)driver;
         WebElement element=driver.findElement(By.id("zone4"));
         System.out.println(element.getText());
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         js.executeScript("arguments[0].scrollIntoView();",element);
-        Thread.sleep(2000);
+        Thread.sleep(4000);
     }
 
     @Test
     public void navigate() throws InterruptedException {
-        driver.get("http://webdriveruniversity.com/Scrolling/index.html");
+        driver.get("https://www.google.com/");
         JavascriptExecutor js= (JavascriptExecutor)driver;
+        Thread.sleep(3000);
         js.executeScript("history.go(0)");
+        Thread.sleep(3000);
         driver.navigate().to("https://the-internet.herokuapp.com/");
+        Thread.sleep(3000);
         js.executeScript("history.go(-1)");
+        Thread.sleep(3000);
+        js.executeScript("history.go(1)");
         Thread.sleep(3000);
     }
 
@@ -116,7 +130,7 @@ public class JavascriptExecutorDemo {
         js.executeScript("document.getElementById('user_password').value='1111111';");
         js.executeScript("document.getElementById('user_submit').click();");
         js.executeScript("alert('enter correct login credentials to continue');");
-        Thread.sleep(5000);
+        Thread.sleep(20000);
     }
 
 

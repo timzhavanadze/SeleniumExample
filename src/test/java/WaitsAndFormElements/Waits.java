@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 
 import org.openqa.selenium.support.ui.FluentWait;
@@ -36,9 +37,10 @@ public class Waits {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         WebElement submitButton = driver.findElement(By.xpath("//form[@id='input-example']/button[@type='button']"));
         submitButton.click();
+        driver.findElement(By.id("message"));
     }
 
-    @Test
+       @Test
     public void waitExplicitly() {
         driver.get("http://the-internet.herokuapp.com/dynamic_controls");
         WebElement submitButton = driver.findElement(By.xpath("//form[@id='input-example']/button[@type='button']"));
@@ -55,6 +57,7 @@ public class Waits {
         //new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.textToBe(By.xpath("//div[@id='finish']//following::h4"),"Hello World!"));
         //new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeSelected(By.xpath("//div[@id='finish']//following::h4")));
     }
+
 
     @Test
     public void fluentWait() {
