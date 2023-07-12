@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
+
 
 public class JavascriptExecutorDemo {
 
@@ -22,7 +24,7 @@ public class JavascriptExecutorDemo {
         driver.manage().window().maximize();
     }
     @Test
-    public static void javaScriptExeMethod(){
+    public static void javaScriptExeMethod() throws InterruptedException {
         driver.get("https://www.gmail.com");
         WebElement loginButton = driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/span"));
         JavascriptExecutor js = (JavascriptExecutor)driver;
@@ -56,6 +58,7 @@ public class JavascriptExecutorDemo {
         //Navigate to new Page
         js.executeScript("window.location = 'https://www.google.com/'");
         System.out.println(driver.getTitle());
+        sleep(5000);
     }
 
     @Test
@@ -64,12 +67,12 @@ public class JavascriptExecutorDemo {
         driver.manage().window().maximize();
         driver.get("http://moneyboats.com/");
         //Vertical scroll - down by 600  pixels
-        js.executeScript("window.scrollBy(0,600)");
+       // js.executeScript("window.scrollBy(0,600)");
         // for scrolling till the bottom of the page we can use the code like
-        //js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-        Thread.sleep(4000);
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        sleep(4000);
         js.executeScript("window.scrollBy(0,-500)");
-        Thread.sleep(4000);
+        sleep(4000);
     }
 
     @Test
@@ -91,9 +94,9 @@ public class JavascriptExecutorDemo {
         JavascriptExecutor js= (JavascriptExecutor)driver;
         // js.executeScript("arguments[0].click();", option1);
         js.executeScript("document.getElementById('vfb-6-0').checked=true;");
-        Thread.sleep(4000);
+        sleep(4000);
         js.executeScript("document.getElementById('vfb-6-0').checked=false;");
-        Thread.sleep(4000);
+        sleep(4000);
     }
 
     @Test
@@ -102,24 +105,24 @@ public class JavascriptExecutorDemo {
         JavascriptExecutor js= (JavascriptExecutor)driver;
         WebElement element=driver.findElement(By.id("zone4"));
         System.out.println(element.getText());
-        Thread.sleep(4000);
+        sleep(4000);
         js.executeScript("arguments[0].scrollIntoView();",element);
-        Thread.sleep(4000);
+        sleep(4000);
     }
 
     @Test
     public void navigate() throws InterruptedException {
         driver.get("https://www.google.com/");
         JavascriptExecutor js= (JavascriptExecutor)driver;
-        Thread.sleep(3000);
+        sleep(3000);
         js.executeScript("history.go(0)");
-        Thread.sleep(3000);
+        sleep(3000);
         driver.navigate().to("https://the-internet.herokuapp.com/");
-        Thread.sleep(3000);
+        sleep(3000);
         js.executeScript("history.go(-1)");
-        Thread.sleep(3000);
+        sleep(3000);
         js.executeScript("history.go(1)");
-        Thread.sleep(3000);
+        sleep(3000);
     }
 
     @Test
@@ -130,7 +133,7 @@ public class JavascriptExecutorDemo {
         js.executeScript("document.getElementById('user_password').value='1111111';");
         js.executeScript("document.getElementById('user_submit').click();");
         js.executeScript("alert('enter correct login credentials to continue');");
-        Thread.sleep(20000);
+        sleep(20000);
     }
 
 

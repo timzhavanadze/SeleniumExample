@@ -108,7 +108,7 @@ public class SwitchTo {
     public void catchWindows() throws InterruptedException {
         driver.get("https://demoqa.com/browser-windows");
 
-        driver.findElement(By.id("windowButton")).click();
+        driver.findElement(By.id("tabButton")).click();
         String mainWindow = driver.getWindowHandle();
         // To handle all new opened window.
         Set<String> allWindows = driver.getWindowHandles();
@@ -130,6 +130,7 @@ public class SwitchTo {
         }
         // Switching to Parent window i.e Main Window.
         driver.switchTo().window(mainWindow);
+        driver.findElement(By.id("messageWindowButton"));
     }
     @Test
     public void WindowHandle() throws InterruptedException {
